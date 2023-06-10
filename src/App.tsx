@@ -3,6 +3,7 @@ import './App.css';
 import Loader from './App/Components/Loader/Loader';
 import Auth from './App/Components/Auth';
 import Dashboard from './App/Components/Dashboard';
+import Navbar from './App/Components/Navbar';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      {isLoggedIn ? <Dashboard /> : <Auth />}
+      {isLoggedIn && <Navbar />}
+      <div className="content">
+        {isLoggedIn ? <Dashboard /> : <Auth />}
+      </div>
     </div>
   );
 }
