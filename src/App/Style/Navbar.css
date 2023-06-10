@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 200px;
+    height: 100vh;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+  .navbar-logo {
+    margin-bottom: 20px;
+  }
+  
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .navbar-section {
+    margin-bottom: 10px;
+  }
+  
+  .navbar-bottom {
+    margin-top: auto;
+  }
+  
