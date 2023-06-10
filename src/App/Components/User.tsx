@@ -4,7 +4,7 @@ import {
   makePostRequest,
   makePutRequest,
   makeDeleteRequest,
-} from './ApiHandler';
+} from '../Api/ApiHandler';
 
 interface User {
   id: number;
