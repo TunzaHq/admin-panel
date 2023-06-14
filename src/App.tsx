@@ -4,6 +4,7 @@ import Loader from './App/Components/Loader/Loader';
 import Auth from './App/Components/Auth';
 import Dashboard from './App/Components/Dashboard';
 import Navbar from './App/Components/Navbar';
+import Policies from './App/Components/Policies';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,8 +27,9 @@ function App() {
   return (
     <div className="App">
       {isLoggedIn && <Navbar />}
-      <div className="hover-bg-success" style={{marginLeft: '4em'}}>
+      <div className="left-margin">
         {isLoggedIn ? <Dashboard /> : <Auth />}
+        {isLoggedIn && <Policies />}
       </div>
     </div>
   );
