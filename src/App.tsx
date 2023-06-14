@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       {isLoggedIn && <Navbar />}
-      <div className="content">
+      <div className="hover-bg-success" style={{marginLeft: '4em'}}>
         {isLoggedIn ? <Dashboard /> : <Auth />}
       </div>
     </div>

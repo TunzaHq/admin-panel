@@ -4,39 +4,13 @@ import '../Style/dashboard.css';
 const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
+        <h1 style={{fontWeight: 900}}>Dashboard</h1>
+        <p style={{fontWeight: 700, color: 'var(--gray)'}}>Welcome Paul</p>
 
-      <div className="card-container">
-        <div className="card">
-          <h2>Card 1</h2>
-          {/* Add content for Card 1 */}
+        <div className='d-flex'>
+            <img src="/assets/svg/calendar.svg" alt="calendar icon" />
+            <p className='my-auto mx-3'>Pick Date Range</p>
         </div>
-
-        <div className="card">
-          <h2>Card 2</h2>
-          {/* Add content for Card 2 */}
-        </div>
-
-        <div className="card">
-          <h2>Card 3</h2>
-          {/* Add content for Card 3 */}
-        </div>
-
-        <div className="card">
-          <h2>Card 4</h2>
-          {/* Add content for Card 4 */}
-        </div>
-
-        <div className="card">
-          <h2>Card 5</h2>
-          {/* Add content for Card 5 */}
-        </div>
-
-        <div className="card">
-          <h2>Card 6</h2>
-          {/* Add content for Card 6 */}
-        </div>
-      </div>
     </div>
   );
 };
