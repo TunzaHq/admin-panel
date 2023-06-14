@@ -5,6 +5,7 @@ import Auth from './App/Components/Auth';
 import Dashboard from './App/Components/Dashboard';
 import Navbar from './App/Components/Navbar';
 import Policies from './App/Components/Policies';
+import UserManagement from './App/Components/User';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,7 @@ function App() {
       <div className="left-margin">
         {isLoggedIn ? <Dashboard /> : <Auth />}
         {isLoggedIn && <Policies />}
+        {isLoggedIn && <UserManagement />}
       </div>
     </div>
   );

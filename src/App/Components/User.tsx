@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   makeGetRequest,
-  makePostRequest,
   makePutRequest,
   makeDeleteRequest,
 } from '../Api/ApiHandler';
@@ -73,10 +72,10 @@ const UserManagement: React.FC = () => {
     <div>
       <h1>User Management</h1>
 
-      {message && <p className="success">{message}</p>}
-      {error && <p className="error">{error}</p>}
+      {message && <p className="alert alert-success">{message}</p>}
+      {error && <p className="alert alert-danger">{error}</p>}
 
-      <table>
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>ID</th>
@@ -87,18 +86,24 @@ const UserManagement: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.full_name}</td>
-              <td>{user.email}</td>
-              <td>{user.location}</td>
-              <td>
-                <button onClick={() => handleEditUser(user)}>Edit</button>
-                <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
-              </td>
+          {Array.isArray(users) ? (
+            users.map(user => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.full_name}</td>
+                <td>{user.email}</td>
+                <td>{user.location}</td>
+                <td>
+                  <button className="btn btn-primary" onClick={() => handleEditUser(user)}>Edit</button>
+                  <button className="btn btn-danger" onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={5}>No users found.</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
 
@@ -107,12 +112,13 @@ const UserManagement: React.FC = () => {
           <h2>Edit User</h2>
           <form onSubmit={() => handleUpdateUser(selectedUser)}>
             {/* Render input fields to update user information */}
-            <button type="submit">Save</button>
+            <button type="submit" className="btn btn-primary">Save</button>
           </form>
         </div>
       )}
     </div>
   );
 };
+
 
 export default UserManagement;
