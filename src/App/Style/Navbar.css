@@ -3,14 +3,15 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    width: 200px;
+    /* width: 200px; */
     height: 100vh;
-    background-color: #f2f2f2;
-    padding: 20px;
+    background-color: var(--white);
+    padding: 5px;
   }
-  
+
   .navbar-logo {
-    margin-bottom: 20px;
+    margin-bottom: 3em;
+    height: 3em;
   }
   
   .navbar-links {
@@ -20,9 +21,24 @@
   
   .navbar-section {
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: 27px;
+    height: 3em;
   }
   
   .navbar-bottom {
     margin-top: auto;
+  }
+
+  .navbar h1 {
+    color: var(--blue);
+  }
+
+  .navbar-section:hover {
+    background-color: var(--orange);
+    border-radius: 1rem;
   }
   
