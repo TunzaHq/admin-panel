@@ -8,6 +8,8 @@ import Policies from './App/Components/Policies';
 import UserManagement from './App/Components/User';
 import Claims from './App/Components/Claims';
 
+
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
