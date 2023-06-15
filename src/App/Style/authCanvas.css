@@ -1,0 +1,31 @@
+/* .reflected {
+    position: relative;
+} */
+.reflected {
+    content: "";
+    transform: scaleX(-1);
+}
+
+@media (max-width: 1023px) {
+    .auth-canvas-picture{
+        display: none;
+        /* flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100vh;
+        background-color: var(--white);
+        padding: 5px; */
+    }
+}
+@media (min-width: 1024px) {
+    .auth-canvas-picture {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100vh;
+        background-color: var(--white);
+        padding: 5px;
+    }
+}
+
