@@ -6,6 +6,7 @@ import Dashboard from './App/Components/Dashboard';
 import Navbar from './App/Components/Navbar';
 import Policies from './App/Components/Policies';
 import UserManagement from './App/Components/User';
+import Claims from './App/Components/Claims';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +33,7 @@ function App() {
         {isLoggedIn ? <Dashboard /> : <Auth />}
         {isLoggedIn && <Policies />}
         {isLoggedIn && <UserManagement />}
+        {isLoggedIn && <Claims/>}
       </div>
     </div>
   );
