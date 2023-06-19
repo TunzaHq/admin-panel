@@ -1,0 +1,36 @@
+.input-style {
+    width: auto;
+    border: none;
+    background-color: transparent;
+}
+.input-style:focus{
+    outline: none;
+}
+.input-style::placeholder{
+    margin-left: 40%;
+}
+.input-container{
+    width: auto;
+    border-radius: 0.5em;
+    position: relative;
+}
+.line {
+    width: 0;
+    height: 2px;
+    background-color: var(--blue);
+    transition: width 0.5s ease;
+    position: absolute;
+    bottom: 0
+}
+.line.expanded {
+    width: 100%;
+}
+.login-btn {
+    background-color: var(--blue) !important;
+    color: var(--orange) !important;
+    border-radius: 1rem;
+}
+.login-btn:hover{
+    background-color: var(--orange) !important;
+    color: var(--blue) !important;
+}

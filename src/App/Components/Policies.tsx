@@ -42,7 +42,7 @@ const Policies: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='ms-5'>
       <h2>Policies</h2>
 
       {/* Display existing policies */}
