@@ -9,6 +9,7 @@ import Policies from './App/Components/Policies';
 import UserManagement from './App/Components/User';
 import Register from './App/Components/Register';
 
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ function App() {
   if (!isLoggedIn) window.location.href = '/login';
 
   return (
+
     <div>
         <BrowserRouter>
             <Navbar>
