@@ -9,11 +9,6 @@
 .input-style::placeholder{
     margin-left: 40%;
 }
-.input-container{
-    width: auto;
-    border-radius: 0.5em;
-    position: relative;
-}
 .line {
     width: 0;
     height: 2px;
@@ -26,11 +21,43 @@
     width: 100%;
 }
 .login-btn {
-    background-color: var(--blue) !important;
-    color: var(--orange) !important;
-    border-radius: 1rem;
+    background-color: var(--orange);
+    color: var(--blue);
 }
 .login-btn:hover{
-    background-color: var(--orange) !important;
-    color: var(--blue) !important;
+    background-color: var(--blue);
+    color: var(--orange);
+}
+.form-container {
+    width: 50%;
+}
+@media screen and (min-width: 1024px) { /* large screen or lg */
+    .form-container {
+        width: 60%;
+    }
+    .w-60\%{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .tunza-font {
+        font-size: 2em;
+    }
+}
+@media screen and (max-width: 1023px) {
+    .w-60\%{
+        width: 100%;
+    }
+    .tunza-font {
+        font-size: 2em;
+    }
+}
+@media screen and (max-width: 568px) {
+    .form-container {
+        width: 100%;
+        margin-right: 10%;
+    }
+    .tunza-font {
+        font-size: 1.4em;
+    }
 }

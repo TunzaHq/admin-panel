@@ -6,6 +6,8 @@ import Login from './App/Components/Login';
 import Dashboard from './App/Components/Dashboard';
 import Navbar from './App/Components/Navbar';
 import Policies from './App/Components/Policies';
+import UserDetail from './App/Components/UserDetail';
+import Claims from './App/Components/Claims';
 import UserManagement from './App/Components/User';
 import Register from './App/Components/Register';
 
@@ -21,7 +23,7 @@ function App() {
       // Assuming the user is authenticated
       setIsLoggedIn(true);
       setIsLoading(false);
-    }, 2000);
+    }, 100);
   }, []);
 
   if (isLoading) {
@@ -42,6 +44,8 @@ function App() {
                     <Route path='/policies' element={<Policies />} />
                     <Route path='/new-policy' element={<Policies />} />
                     <Route path='/user-management' element={<UserManagement />}/>
+                    <Route path='/user-detail' element={<UserDetail />}/>
+                    <Route path='/claims' element={<Claims />} />
                 </Routes>
             </Navbar>
         </BrowserRouter>

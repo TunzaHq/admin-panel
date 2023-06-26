@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeGetRequest, makePutRequest } from '../Api/ApiHandler';
+import '../Style/claims.css';
 
 interface Claim {
   id: number;

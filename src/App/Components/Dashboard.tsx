@@ -3,7 +3,7 @@ import '../Style/dashboard.css';
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="dashboard">
+    <div>
         <h1 style={{fontWeight: 900}}>Dashboard</h1>
         <p style={{fontWeight: 700, color: 'var(--gray)'}}>Welcome Paul</p>
 
