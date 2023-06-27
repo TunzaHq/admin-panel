@@ -15,7 +15,14 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <ToastContainer />
+      <ToastContainer 
+        autoClose={3500}
+        hideProgressBar={true}
+        closeOnClick
+        rtl={false}
+        pauseOnHover
+        draggable
+      />
       <App />
     </React.StrictMode>
   </BrowserRouter>
