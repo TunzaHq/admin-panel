@@ -10,7 +10,10 @@ function Navbar({ children }: ChildrenProps){
     const [full, setFull] = useState(false);
   return (
     <>
-    { full && window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/' ? 
+    { window.location.pathname === '/login' || window.location.pathname === '/' ?
+        <AuthCanvas>{children}</AuthCanvas>
+    :
+    full && window.location.pathname !== '/login' && window.location.pathname !== '/' ? 
     <div>
         <div className="navbar fixed-left" onMouseLeave={() => setFull(false)}>
           <div className="navbar-logo flex" style={{gap: '10px'}}>
@@ -58,7 +61,6 @@ function Navbar({ children }: ChildrenProps){
         </div>
     </div>
     :
-    !full && window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/' ?
     <div>
         <div className="navbar fixed-left" onMouseOver={() => setFull(true)}>
             <div className="navbar-logo flex">
@@ -107,8 +109,6 @@ function Navbar({ children }: ChildrenProps){
             </div>
         {/* </div> */}
     </div>
-    : 
-    <AuthCanvas>{children}</AuthCanvas>
     }
     </>
   );
