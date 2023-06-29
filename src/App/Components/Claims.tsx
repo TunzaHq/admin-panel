@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeGetRequest, makePutRequest } from '../Api/ApiHandler';
 import '../Style/claims.css';
 import ReusableTable from './ReusableTable';
+import { useNavigate } from 'react-router-dom';
 
 interface Claim {
   id: number;
@@ -19,11 +20,12 @@ const Claims: React.FC = () => {
   const [selectedClaim, setSelectedClaim] = useState<Claim | null>(null);
   const [message, setMessage] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const navigate = useNavigate();
 
   const claimsCols = [
     {
       Header: "Created On",
-      accessor: "createdAt"
+      accessor: "created_at"
     },
     {
       Header: "Status",
@@ -32,8 +34,8 @@ const Claims: React.FC = () => {
     {
       Header: "Amount (Ksh.)",
       accessor: "amount"
-    },      
-  ]
+    },
+  ];
 
   useEffect(() => {
     fetchClaims();
@@ -47,18 +49,29 @@ const Claims: React.FC = () => {
         "https://tunza.mybackend.studio/claims",
         headers
       );
-      setClaims(response);
+      if (Array.isArray(response)) {
+        setClaims(response);
+      } else {
+        console.error('Invalid response:', response);
+        setError('Failed to fetch claims. Invalid response received.');
+      }
     } catch (error) {
       console.error('Failed to fetch claims:', error);
       setError('Failed to fetch claims. Please try again later.');
     }
   };
 
+  const handleAddClaim = () => {
+    navigate('/add-claim');
+  };
+
   return (
     <>
-    <div className="right">
-      <button type="submit" className="btn">Add Claim</button>
-    </div>
+      <div className="right">
+        <button type="submit" className="btn" onClick={handleAddClaim}>
+          Add Claim
+        </button>
+      </div>
       <ReusableTable
         columns={claimsCols}
         data={claims}

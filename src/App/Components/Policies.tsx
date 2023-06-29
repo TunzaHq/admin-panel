@@ -3,16 +3,15 @@ import { makeGetRequest, makePostRequest } from "../Api/ApiHandler";
 import ReusableTable from "./ReusableTable";
 import { useNavigate } from "react-router-dom";
 
-const Plans: React.FC = () => {
-  const [policies, setPolicies] = useState<any[]>([]);
-  const [newPolicy, setNewPolicy] = useState<any>({
-    name: "",
-    description: "",
-    price: 0,
-    icon: "",
-  });
+interface Policy {
+  created_at: string;
+  name: string;
+  price: number;
+}
 
-  const navigate = useNavigate()
+const Plans: React.FC = () => {
+  const [policies, setPolicies] = useState<Policy[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPolicies();
@@ -21,17 +20,17 @@ const Plans: React.FC = () => {
   const policiesCols = [
     {
       Header: "Created On",
-      accessor: "created_at"
+      accessor: "created_at",
     },
     {
       Header: "Name",
-      accessor: "name"
+      accessor: "name",
     },
     {
       Header: "Amount (Ksh.)",
-      accessor: "price"
-    },      
-  ]
+      accessor: "price",
+    },
+  ];
 
   const fetchPolicies = async () => {
     try {
@@ -41,7 +40,9 @@ const Plans: React.FC = () => {
         "https://tunza.mybackend.studio/covers",
         headers
       );
-      setPolicies(response);
+      if (Array.isArray(response)) {
+        setPolicies(response);
+      }
     } catch (error) {
       console.error("Failed to fetch policies:", error);
     }
@@ -50,6 +51,7 @@ const Plans: React.FC = () => {
   const addPlan = () => {
     navigate("/add-plan");
   };
+
   return (
     <>
       <div className="right">
@@ -57,7 +59,11 @@ const Plans: React.FC = () => {
           Add Policies
         </button>
       </div>
-      <ReusableTable columns={policiesCols} data={policies} title={"Plans"} />
+      {Array.isArray(policies) ? (
+        <ReusableTable columns={policiesCols} data={policies} title={"Plans"} />
+      ) : (
+        <p>No policies available.</p>
+      )}
     </>
   );
 };

@@ -43,13 +43,12 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/plans" element={<Policies />} />
-          <Route path="/add-plan" element={<AddPlan />} />
           <Route path="/users" element={<UserManagement />} />
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/user-detail" element={<UserDetail />} />
           <Route path="/claims" element={<Claims />} />
-          <Route path="/claims" element={<AddClaim />} />
-          <Route path="/plans" element={<AddPolicy />} />
+          <Route path="/add-claim" element={<AddClaim />} />
+          <Route path="/add-plan" element={<AddPolicy />} />
 
         </Routes>
       </Navbar>
