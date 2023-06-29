@@ -5,125 +5,76 @@ import {
   makeDeleteRequest,
 } from "../Api/ApiHandler";
 import { IUser } from "../interfaces/user.interface";
+import ReusableTable from "./ReusableTable";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const UserManagement: React.FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [selectedUser, setSelectedUser] = useState<IUser | null>(null);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
+  const userCols = [
+    {
+      Header: "Joined",
+      accessor: "created_at",
+    },
+    {
+      Header: "Full Name",
+      accessor: "full_name",
+    },
+    {
+      Header: "Email",
+      accessor: "email",
+    },
+    {
+      Header: "Role",
+      accessor: "role",
+    },
+  ];
+
   const fetchUsers = async () => {
     try {
-      const response = await makeGetRequest("/users");
-      setUsers(response);
+      const token = await sessionStorage.getItem("token");
+      const headers = { Authorization: token };
+      const response = await makeGetRequest(
+        "https://tunza.mybackend.studio/users",
+        headers
+      );
+      console.log(response);
+      
+      let userList = response.sort((a: { id: number; }, b: { id: number; }) => {
+        return b.id - a.id;
+      });
+      console.log(userList);
+      
+      setUsers(userList);
     } catch (error) {
       console.error("Failed to fetch users:", error);
+      toast("Error! Failed to fetch users");
       setError("Failed to fetch users. Please try again later.");
     }
   };
 
-  const handleEditUser = (user: IUser) => {
-    setSelectedUser(user);
-    setMessage("");
-    setError("");
-  };
-
-  const handleDeleteUser = async (userId: number) => {
-    try {
-      await makeDeleteRequest(`/users/${userId}`);
-      setUsers(users.filter((user) => user.id !== userId));
-      setMessage("User deleted successfully.");
-      setError("");
-    } catch (error) {
-      console.error("Failed to delete user:", error);
-      setError("Failed to delete user. Please try again later.");
-    }
-  };
-
-  const handleUpdateUser = async (updatedUser: IUser) => {
-    try {
-      const response = await makePutRequest(
-        `/users/${updatedUser.id}`,
-        updatedUser
-      );
-      const updatedUsers = users.map((user) =>
-        user.id === updatedUser.id ? response : user
-      );
-      setUsers(updatedUsers);
-      setSelectedUser(null);
-      setMessage("User updated successfully.");
-      setError("");
-    } catch (error) {
-      console.error("Failed to update user:", error);
-      setError("Failed to update user. Please try again later.");
-    }
+  const addUser = () => {
+    navigate("/add-user");
   };
 
   return (
-    <div>
-      <h1>User Management</h1>
-
-      {message && <p className="alert alert-success">{message}</p>}
-      {error && <p className="alert alert-danger">{error}</p>}
-
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Location</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(users) ? (
-            users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.full_name}</td>
-                <td>{user.email}</td>
-                <td>{user.location}</td>
-                <td>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => handleEditUser(user)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDeleteUser(user.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={5}>No users found.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-
-      {selectedUser && (
-        <div>
-          <h2>Edit User</h2>
-          <form onSubmit={() => handleUpdateUser(selectedUser)}>
-            {/* Render input fields to update user information */}
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
-          </form>
-        </div>
-      )}
-    </div>
+    <>
+      <div className="right">
+        <button type="submit" className="btn" onClick={addUser}>
+          Add User
+        </button>
+      </div>
+      <ReusableTable columns={userCols} data={users} title={"Users"} />
+    </>
   );
 };
 
