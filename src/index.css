@@ -39,3 +39,11 @@ code {
     opacity: 0;
   }
 }
+
+.btn {
+  color: #3A4276;
+  background: #fff;
+  border: 1px solid #3A4276;
+  padding: 8px 24px;
+  border-radius: 12px;
+}

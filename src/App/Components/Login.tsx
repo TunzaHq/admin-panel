@@ -49,6 +49,7 @@ const Login: React.FC = () => {
       );
       if (req1.hasOwnProperty("token")) {
         const token = req1.token;
+        await sessionStorage.setItem("token", `Bearer ${token}`);
         const headers = {
           Authorization: `Bearer ${token}`,
         };
